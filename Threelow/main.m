@@ -17,6 +17,26 @@ int main(int argc, const char * argv[]) {
         Dice * dice4 = [[Dice alloc]init];
         Dice * dice5 = [[Dice alloc]init];
         
+        char input [255];
+        
+        while(true) {
+            NSLog(@"Options: roll");
+            fgets(input, 255, stdin);
+            NSString * stringInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
+            
+            if ([stringInput isEqualToString:@"roll\n"]) {
+                NSString * dice1Output = [dice1 randomize];
+                NSLog(@"Dice 1: %@", dice1Output);
+                NSString * dice2Output = [dice2 randomize];
+                NSLog(@"Dice 2: %@", dice2Output);
+                NSString * dice3Output = [dice3 randomize];
+                NSLog(@"Dice 3: %@", dice3Output);
+                NSString * dice4Output = [dice4 randomize];
+                NSLog(@"Dice 4: %@", dice4Output);
+                NSString * dice5Output = [dice5 randomize];
+                NSLog(@"Dice 5: %@", dice5Output);
+            }
+        }
     }
     return 0;
 }
