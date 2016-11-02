@@ -37,6 +37,11 @@ int main(int argc, const char * argv[]) {
                 int diceNumber;
                 scanf("%d", &diceNumber);
                 [gc holdDice:(diceNumber)];
+            }else if ([stringInput isEqualToString:@"unhold\n"]) {
+                NSLog(@"Which dice do you want to unhold?");
+                int diceNumber;
+                scanf("%d", &diceNumber);
+                [gc unholdDice:(diceNumber)];
             }
             
         }

@@ -58,7 +58,20 @@
         counter += 1;
         
     }
-
 }
 
+-(void) unholdDice: (int) diceNumber{
+    diceNumber = diceNumber -1;
+    [self.heldDices removeObject: self.dices[diceNumber] ];
+    int  counter = 1;
+    for (Dice* dice in self.dices) {
+        if ([self.heldDices containsObject:dice]){
+            NSLog(@"Dice %d: [%d]",counter, dice.currentValue);
+        }else{
+            NSLog(@"Dice %d: %d",counter, dice.currentValue);
+        }
+        counter += 1;
+        
+    }
+}
 @end
