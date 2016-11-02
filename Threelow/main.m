@@ -7,35 +7,38 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Dice.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        Dice * dice1 = [[Dice alloc]init];
-        Dice * dice2 = [[Dice alloc]init];
-        Dice * dice3 = [[Dice alloc]init];
-        Dice * dice4 = [[Dice alloc]init];
-        Dice * dice5 = [[Dice alloc]init];
+        GameController * gc = [[GameController alloc] init];
+        NSLog(@"Which dice do you want to hold?");
+        int diceNumber;
+        scanf("%d", &diceNumber);
+        [gc holdDice:diceNumber];
         
         char input [255];
-        
         while(true) {
-            NSLog(@"Options: roll");
+            NSLog(@"Options: roll, hold, unhold");
             fgets(input, 255, stdin);
+            if(input[0] == '\n'){
+                fgets(input, 255, stdin);
+            }
             NSString * stringInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
             
             if ([stringInput isEqualToString:@"roll\n"]) {
-                NSString * dice1Output = [dice1 randomize];
-                NSLog(@"Dice 1: %@", dice1Output);
-                NSString * dice2Output = [dice2 randomize];
-                NSLog(@"Dice 2: %@", dice2Output);
-                NSString * dice3Output = [dice3 randomize];
-                NSLog(@"Dice 3: %@", dice3Output);
-                NSString * dice4Output = [dice4 randomize];
-                NSLog(@"Dice 4: %@", dice4Output);
-                NSString * dice5Output = [dice5 randomize];
-                NSLog(@"Dice 5: %@", dice5Output);
+                [gc roll];
+                NSLog(@"Which dice do you want to hold?");
+                int diceNumber;
+                scanf("%d", &diceNumber);
+                [gc holdDice:(diceNumber)];
+            }else if ([stringInput isEqualToString:@"hold\n"]) {
+                NSLog(@"Which dice do you want to hold?");
+                int diceNumber;
+                scanf("%d", &diceNumber);
+                [gc holdDice:(diceNumber)];
             }
+            
         }
     }
     return 0;

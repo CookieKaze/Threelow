@@ -10,10 +10,11 @@
 
 @interface Dice : NSObject
 
-@property NSArray *diceFaces;
-@property NSInteger currentValue;
+@property NSArray * diceFaces;
+@property NSString * diceFace;
+@property int currentValue;
 
 
-- (NSString *) randomize;
+- (void) randomize;
 
 @end

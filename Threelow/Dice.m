@@ -19,9 +19,10 @@
     return self;
 }
 
-- (NSString *) randomize {
+- (void) randomize {
     int value = arc4random_uniform(5);
-    return self.diceFaces[value];
+    self.currentValue = value+1;
+    self.diceFace = self.diceFaces[value];
 }
 
 @end
