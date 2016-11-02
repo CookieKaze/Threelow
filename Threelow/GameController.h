@@ -16,4 +16,6 @@
 -(void) roll;
 -(void) holdDice: (int) diceNumber;
 -(void) unholdDice: (int) diceNumber;
+-(void) resetDice;
+
 @end

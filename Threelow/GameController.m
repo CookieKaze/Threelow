@@ -41,7 +41,7 @@
         }else{
             NSLog(@"%d",dice.currentValue);
         }
-
+        
     }
 }
 
@@ -74,4 +74,17 @@
         
     }
 }
+
+-(void) resetDice {
+    for (Dice * dice in self.dices) {
+        [self.heldDices removeObject:dice];
+        
+    }
+    int  counter = 1;
+    for (Dice* dice in self.dices) {
+        NSLog(@"Dice %d: %d",counter, dice.currentValue);
+        counter += 1;
+    }
+}
+
 @end

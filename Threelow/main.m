@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
         
         char input [255];
         while(true) {
-            NSLog(@"Options: roll, hold, unhold");
+            NSLog(@"Options: roll, hold, unhold, reset");
             fgets(input, 255, stdin);
             if(input[0] == '\n'){
                 fgets(input, 255, stdin);
@@ -42,6 +42,8 @@ int main(int argc, const char * argv[]) {
                 int diceNumber;
                 scanf("%d", &diceNumber);
                 [gc unholdDice:(diceNumber)];
+            }else if ([stringInput isEqualToString:@"reset\n"]) {
+                [gc resetDice];
             }
             
         }
