@@ -20,7 +20,7 @@
 }
 
 - (void) randomize {
-    int value = arc4random_uniform(5);
+    int value = arc4random_uniform(6);
     self.currentValue = value+1;
     self.diceFace = self.diceFaces[value];
 }

@@ -12,10 +12,12 @@
 
 @property NSArray * dices;
 @property NSMutableSet * heldDices;
+@property NSInteger heldTotal;
 
+-(NSString *) getInput: (NSString*) type;
 -(void) roll;
 -(void) holdDice: (int) diceNumber;
--(void) unholdDice: (int) diceNumber;
 -(void) resetDice;
+-(void) currentStatus;
 
 @end

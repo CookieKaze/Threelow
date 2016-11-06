@@ -12,40 +12,29 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         GameController * gc = [[GameController alloc] init];
-        NSLog(@"Which dice do you want to hold?");
-        int diceNumber;
-        scanf("%d", &diceNumber);
-        [gc holdDice:diceNumber];
-        
-        char input [255];
         while(true) {
-            NSLog(@"Options: roll, hold, unhold, reset");
-            fgets(input, 255, stdin);
-            if(input[0] == '\n'){
-                fgets(input, 255, stdin);
-            }
-            NSString * stringInput = [NSString stringWithCString:input encoding:NSUTF8StringEncoding];
-            
-            if ([stringInput isEqualToString:@"roll\n"]) {
-                [gc roll];
-                NSLog(@"Which dice do you want to hold?");
-                int diceNumber;
-                scanf("%d", &diceNumber);
-                [gc holdDice:(diceNumber)];
-            }else if ([stringInput isEqualToString:@"hold\n"]) {
-                NSLog(@"Which dice do you want to hold?");
-                int diceNumber;
-                scanf("%d", &diceNumber);
-                [gc holdDice:(diceNumber)];
-            }else if ([stringInput isEqualToString:@"unhold\n"]) {
-                NSLog(@"Which dice do you want to unhold?");
-                int diceNumber;
-                scanf("%d", &diceNumber);
-                [gc unholdDice:(diceNumber)];
-            }else if ([stringInput isEqualToString:@"reset\n"]) {
+            [gc currentStatus];
+            NSLog(@"Which dice do you want to hold?");
+            NSString * input = [gc getInput:@"num"];
+            [gc holdDice:[input intValue]];
+            if ([gc.heldDices count] == 5) {
+                [gc currentStatus];
+                NSLog(@"Game Over! Your final score is: %ld\n\n", (long)gc.heldTotal);
                 [gc resetDice];
+                [gc roll];
+                continue;
+            }else{
+                [gc currentStatus];
+                NSLog(@"Options: roll, hold, reset");
+                input = [gc getInput:@"option"];
+                if ([input isEqualToString:@"roll"]) {
+                    [gc roll];
+                    [gc currentStatus];
+                }else if ([input isEqualToString:@"reset"]) {
+                    [gc resetDice];
+                    continue;
+                }
             }
-            
         }
     }
     return 0;
